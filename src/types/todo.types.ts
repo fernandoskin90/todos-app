@@ -5,4 +5,4 @@ export interface ITodo {
   completed: boolean
 }
 
-export type Todo = Map<number, ITodo>
+export type Todo = Map<string, ITodo>
