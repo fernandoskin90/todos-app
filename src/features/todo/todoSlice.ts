@@ -17,13 +17,12 @@ interface InititalState {
   error: string | null | unknown
 }
 
-enableMapSet()
-
 const initialState: InititalState = {
   loading: Loading.IDLE,
   todos: new Map(),
   error: null,
 }
+enableMapSet()
 
 export const fetchTodos = createAsyncThunk(
   'todos/fetchTodos',

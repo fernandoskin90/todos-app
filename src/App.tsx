@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import './App.css'
 import { fetchTodos, selectTodos } from './features/todo'
 import { useAppDispatch, useAppSelector } from './store'
 
@@ -14,7 +13,11 @@ function App() {
   }, [])
 
   console.log({ todos, error, loading })
-  return <div className='App'></div>
+  return (
+    <div className='App'>
+      <h1>Welcome back, Fernando</h1>
+    </div>
+  )
 }
 
 export default App
