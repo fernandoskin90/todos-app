@@ -1,22 +1,18 @@
-import { useEffect } from 'react'
-import { fetchTodos, selectTodos } from './features/todo'
-import { useAppDispatch, useAppSelector } from './store'
+import styled from '@emotion/styled'
+import { Home } from './pages'
+
+const Main = styled.main`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+`
 
 function App() {
-  const dispatch = useAppDispatch()
-  const {
-    todos: { todos, error, loading },
-  } = useAppSelector(selectTodos)
-
-  useEffect(() => {
-    dispatch(fetchTodos())
-  }, [])
-
-  console.log({ todos, error, loading })
   return (
-    <div className='App'>
-      <h1>Welcome back, Fernando</h1>
-    </div>
+    <Main>
+      <Home />
+    </Main>
   )
 }
 
