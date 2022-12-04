@@ -15,12 +15,14 @@ interface InititalState {
   loading: Loading
   todos: Todo
   error: string | null | unknown
+  todosIds: string[]
 }
 
 const initialState: InititalState = {
   loading: Loading.IDLE,
   todos: new Map(),
   error: null,
+  todosIds: [],
 }
 enableMapSet()
 
@@ -43,6 +45,14 @@ export const todoSlice = createSlice({
     addTodo: (state, { payload }: PayloadAction<Todo>) => {
       console.log(state, payload)
     },
+    updateTodo: (state, { payload }: PayloadAction<string>) => {
+      const todoToUpdate = state.todos.get(payload)
+      console.log('XD')
+      if (todoToUpdate) {
+        todoToUpdate.completed = !todoToUpdate.completed
+        state.todos.set(payload, todoToUpdate)
+      }
+    },
   },
 
   extraReducers(builder) {
@@ -55,6 +65,7 @@ export const todoSlice = createSlice({
       .addCase(fetchTodos.fulfilled, (state, action: PayloadAction<Todo>) => {
         state.loading = Loading.FULFILLED
         state.todos = action.payload
+        state.todosIds = Array.from(action.payload.keys())
       })
       .addCase(fetchTodos.rejected, (state, action) => {
         state.loading = Loading.REJECTED
@@ -63,7 +74,7 @@ export const todoSlice = createSlice({
   },
 })
 
-export const { addTodo } = todoSlice.actions
+export const { addTodo, updateTodo } = todoSlice.actions
 
 export const selectTodos = (state: RootState) => state
 

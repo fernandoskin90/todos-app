@@ -3,4 +3,5 @@ export {
   addTodo,
   selectTodos,
   fetchTodos,
+  updateTodo,
 } from './todoSlice'

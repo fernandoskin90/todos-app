@@ -1,14 +1,18 @@
+import { CardTodo, HeaderDescription } from '@/components'
 import { useTodos } from '@/hooks'
 import { Header, Title } from './home.styles'
 
 export function Home() {
-  const { todos } = useTodos()
+  const { todosIds } = useTodos()
   return (
     <>
       <Header>
         <Title>Welcome back, Fernando</Title>
-        <span>{`You've got ${todos.size} tasks coming up in the next days.`}</span>
+        <HeaderDescription />
       </Header>
+      {todosIds.map((id) => (
+        <CardTodo key={id} todoId={id} />
+      ))}
     </>
   )
 }

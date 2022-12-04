@@ -1,20 +1,22 @@
-import { fetchTodos, selectTodos } from '@/features/todo'
-import { useAppDispatch, useAppSelector } from '@/store'
+import { fetchTodos } from '@/features/todo'
+import { RootState, useAppDispatch } from '@/store'
 import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 
 export const useTodos = () => {
   const dispatch = useAppDispatch()
-  const {
-    todos: { todos, error, loading },
-  } = useAppSelector(selectTodos)
+  const error = useSelector((state: RootState) => state.todos.error)
+  const loading = useSelector((state: RootState) => state.todos.loading)
+  const todosIds = useSelector((state: RootState) => state.todos.todosIds)
 
   useEffect(() => {
+    console.log('useEffect')
     dispatch(fetchTodos())
   }, [])
 
   return {
-    todos,
     error,
     loading,
+    todosIds,
   }
 }
