@@ -4,7 +4,10 @@ import { Todo } from '@/types'
 
 const todosMap: Todo = new Map()
 
-export const setTodosMapOnLocalStorage = async (): Promise<void> => {
+export const setTodosMapOnLocalStorage = async (): Promise<any> => {
+  const todos = new Map(JSON.parse(localStorage.testMap) as Todo)
+  console.log(!todos)
+  if (!todos) return null
   const { data } = await fetchTodos()
   for (const item of data) {
     const id = uuidv4()
@@ -25,4 +28,8 @@ export const getTodosFromLocalStorage = async (): Promise<Todo> => {
       reject(error)
     }
   })
+}
+
+export const updateLocalStorage = (todo: Todo): void => {
+  localStorage.testMap = JSON.stringify(Array.from(todo.entries()))
 }

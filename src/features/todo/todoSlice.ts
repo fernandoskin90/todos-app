@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { enableMapSet } from 'immer'
 import { RootState } from '@/store'
 import { Todo } from '@/types'
-import { getTodosFromLocalStorage } from '@/utilities'
+import { getTodosFromLocalStorage, updateLocalStorage } from '@/utilities'
 
 enum Loading {
   IDLE = 'idle',
@@ -47,10 +47,10 @@ export const todoSlice = createSlice({
     },
     updateTodo: (state, { payload }: PayloadAction<string>) => {
       const todoToUpdate = state.todos.get(payload)
-      console.log('XD')
       if (todoToUpdate) {
         todoToUpdate.completed = !todoToUpdate.completed
         state.todos.set(payload, todoToUpdate)
+        updateLocalStorage(state.todos)
       }
     },
   },
