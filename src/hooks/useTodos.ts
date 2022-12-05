@@ -10,7 +10,6 @@ export const useTodos = () => {
   const todosIds = useSelector((state: RootState) => state.todos.todosIds)
 
   useEffect(() => {
-    console.log('useEffect')
     dispatch(fetchTodos())
   }, [])
 

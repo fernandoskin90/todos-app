@@ -7,22 +7,24 @@
   line-height: 24px;
   font-weight: 400;
   overflow: auto;
-
-  color-scheme: light dark;
   color: #252424;
-  background-color: #f4f4f4;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
 }
 
-body {
+body,
+#root {
   box-sizing: border-box;
+  background-color: #f4f4f4;
   width: 100vw;
   height: 100vh;
+  padding: 0;
+  margin: 0;
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
 }
 
 h1 {

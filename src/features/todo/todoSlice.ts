@@ -53,6 +53,13 @@ export const todoSlice = createSlice({
         updateLocalStorage(state.todos)
       }
     },
+    deleteTodo: (state, { payload }: PayloadAction<string>) => {
+      const todoToDele = state.todos.get(payload)
+      if (todoToDele) {
+        state.todos.delete(payload)
+        updateLocalStorage(state.todos)
+      }
+    },
   },
 
   extraReducers(builder) {
@@ -74,7 +81,7 @@ export const todoSlice = createSlice({
   },
 })
 
-export const { addTodo, updateTodo } = todoSlice.actions
+export const { addTodo, updateTodo, deleteTodo } = todoSlice.actions
 
 export const selectTodos = (state: RootState) => state
 

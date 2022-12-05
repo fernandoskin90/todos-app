@@ -1,18 +1,27 @@
-import { CardTodo, HeaderDescription } from '@/components'
+import { CardTodo } from '@/components'
 import { useTodos } from '@/hooks'
-import { ContainerHome, Header, Title } from './home.styles'
+import {
+  ButtonNewTodo,
+  ContainerHome,
+  HomeTitle,
+  ListItems,
+} from './home.styles'
 
 export function Home() {
   const { todosIds } = useTodos()
   return (
-    <ContainerHome>
-      <Header>
-        <Title>Welcome back, Fernando</Title>
-        <HeaderDescription />
-      </Header>
-      {todosIds.map((id) => (
-        <CardTodo key={id} todoId={id} />
-      ))}
+    <ContainerHome maxWidth='xl'>
+      <HomeTitle>
+        <h3>Todos</h3>
+        <ButtonNewTodo size='small' variant='text'>
+          Add Todo
+        </ButtonNewTodo>
+      </HomeTitle>
+      <ListItems>
+        {todosIds.map((id) => (
+          <CardTodo key={id} todoId={id} />
+        ))}
+      </ListItems>
     </ContainerHome>
   )
 }
